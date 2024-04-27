@@ -136,4 +136,4 @@ which you can trigger with default parameters (and selected Cloud Provider):
 
 ## 📈 Metrics
 
-![Alt](https://repobeats.axiom.co/api/embed/69b307e8378e9b8f81fb185fd5590634ed1d9abd.svg "Repobeats")
+![Alt](https://repobeats.axiom.co/api/embed/f641429d3888204d956662b40877853b1b29c5ce.svg "Repobeats")
