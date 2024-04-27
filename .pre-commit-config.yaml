@@ -1,0 +1,58 @@
+---
+default_stages: [commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: detect-private-key
+        name: check for debug statements
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        name: check for hardcoded secrets
+        exclude: docker-compose.*
+  - repo: https://github.com/AleksaC/hadolint-py
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint
+        name: check Dockerfile
+        args: [--ignore, DL3008, --ignore, DL3045]
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.8
+    hooks:
+      - id: bandit
+        name: security audit for python
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+        name: check commit message
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.89.0
+    hooks:
+      - id: terraform_fmt
+        name: terraform format
+      - id: terraform_validate
+        name: terraform validate
+      - id: terraform_checkov
+        name: terraform checkov
+        args:
+          - --args=--quiet --compact --download-external-modules=true --check=MEDIUM --directory=terraform
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.5
+    hooks:
+      - id: ruff
+        name: ruff check
+        types_or: [ python ]
+        args: [ --fix ]
+      - id: ruff-format
+        name: ruff format
+        types_or: [ python ]

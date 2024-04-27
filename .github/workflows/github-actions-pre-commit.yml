@@ -1,0 +1,34 @@
+name: pre-commit
+run-name: ${{ github.actor }} 🚀
+on: [push]
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+
+      - name: Installing python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: echo "🐍 Python is installed."
+
+      - name: Installing checkov
+        run: pip install --no-cache-dir --upgrade pip && pip install checkov>=3.2.74
+      - run: echo "✅ Checkov is installed."
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.0"
+      - run: echo "✈️ Terraform is installed."
+
+      - run: echo "🖥️ The workflow is now ready to run pre-commit hooks."
+      - name: Add pre-commit hooks
+        uses: pre-commit/action@v3.0.1
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -1,0 +1,22 @@
+__pycache__
+credentials/
+
+# Environment
+.venv/
+env/
+venv/
+
+# JetBrains IDEs
+*.http
+*.rest
+.idea/
+
+# Visual Studio Code
+*.code-workspace
+
+# Terraform
+.external_modules/
+.terraform/
+
+# Ruff
+.ruff_cache/
