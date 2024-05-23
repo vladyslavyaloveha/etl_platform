@@ -1,11 +1,10 @@
 import json
 from typing import Any
 
+from airflow import settings
 from airflow.decorators import task
 from airflow.models import Connection
 from sqlalchemy import update
-
-from airflow import settings
 
 
 @task(task_id="connection")

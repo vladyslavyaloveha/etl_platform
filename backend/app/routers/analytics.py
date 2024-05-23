@@ -1,11 +1,12 @@
 from datetime import date
 from typing import Annotated
 
-from app.models.serialization.analytics import AnalyticsOut
-from app.repositories.analytics import CloudProviders, TripAnalyticsRepository
 from fastapi import APIRouter, HTTPException, Query
 from fastapi_pagination import Page, paginate
 from starlette import status
+
+from app.models.serialization.analytics import AnalyticsOut
+from app.repositories.analytics import CloudProviders, TripAnalyticsRepository
 
 router = APIRouter(
     prefix="/analytics",

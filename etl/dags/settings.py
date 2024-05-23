@@ -2,10 +2,10 @@ import os.path
 from typing import Final
 
 DAG_RUN_TIMEOUT: Final[int] = 60 * 10
-
-FILE_URL: Final[str] = (
-    "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet"
-)
+MAX_RETRIES: Final[int] = 3
+RETRY_DELAY: Final[int] = 2
+RESPONSE_CHUNK_SIZE: Final[int] = 512
+BASE_URL: Final[str] = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 
 BASE_DIRECTORY = "/opt/airflow/dags/data"
 
