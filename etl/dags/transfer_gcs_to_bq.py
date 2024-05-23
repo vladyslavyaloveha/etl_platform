@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 from airflow.decorators import task
 from airflow.operators.python import get_current_context
@@ -28,7 +29,7 @@ JOB_CONFIG: dict[str] = {
 
 
 @task
-def transfer_gcs_to_bq() -> None:
+def transfer_gcs_to_bq() -> Any:
     """Transfer data from Google Cloud Storage to BigQuery
 
     Returns:

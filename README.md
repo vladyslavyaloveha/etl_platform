@@ -62,7 +62,7 @@ terraform apply -auto-approve
 ❗ For `Aws` cloud provider you have to pass
 `aws_access_key_id`, `aws_secret_access_key`, `redshift_master_password`. <br>
 As an output you will get `redshift_cluster_endpoint` where `redshift-host`
-could be extracted and passed in `.env` file below.
+could be extracted and passed in `.env` file below. <br>
 ❗ For `Gcp` cloud provider you have to pass
 `credentials_path=../../credentials/gcp/<filename>.json`, `project_name`.
 

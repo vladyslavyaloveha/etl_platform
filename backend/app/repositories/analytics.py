@@ -3,11 +3,12 @@ from enum import Enum
 from typing import Any
 
 import sqlalchemy.exc
-from app.config.settings import get_settings
-from app.models.orm.analytics import TripAnalyticsBigQuery, TripAnalyticsRedshift
 from sqlalchemy import and_, create_engine, select
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import Session
+
+from app.config.settings import get_settings
+from app.models.orm.analytics import TripAnalyticsBigQuery, TripAnalyticsRedshift
 
 settings = get_settings()
 

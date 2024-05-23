@@ -52,7 +52,7 @@ repos:
       - id: ruff
         name: ruff check
         types_or: [ python ]
-        args: [ --fix ]
+        args: [ --select, I, --fix ]
       - id: ruff-format
         name: ruff format
         types_or: [ python ]

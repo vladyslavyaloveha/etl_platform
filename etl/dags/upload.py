@@ -22,7 +22,7 @@ def upload() -> None:
     task_instance = get_current_context()["task_instance"]
 
     path = pathlib.Path(
-        task_instance.xcom_pull(task_ids="extract_data", key="file_path")
+        task_instance.xcom_pull(task_ids="extract_data", key="analytics_file_path")
     )
     cloud_provider = task_instance.xcom_pull(
         task_ids="branch_task", key="cloud_provider"

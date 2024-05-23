@@ -1,3 +1,4 @@
+import ast
 import datetime
 import os
 import pathlib
@@ -58,20 +59,25 @@ def trip_analytics(df: pyspark.sql.DataFrame) -> pyspark.sql.DataFrame:
 
 
 if __name__ == "__main__":
-    path = Path(sys.argv[1])
+    file_paths = ast.literal_eval(sys.argv[1])
+    if not file_paths:
+        raise ValueError("No file path provided to calculate analytics")
+    analytics_file_path = sys.argv[2]
+
     spark = SparkSession(
         SparkContext(conf=SparkConf(), appName="transform").getOrCreate()
     )
 
-    df = spark.read.parquet(str(path))
+    df = spark.read.parquet(*file_paths)
     result = trip_analytics(df)
 
-    filename = f"analytics_{path.name[:-9]}"
-    temp_filename = f"{str(uuid.uuid4())}_{filename}"
-
-    save_path = pathlib.Path(path.parent).joinpath(filename).resolve()
-    temp_path = pathlib.Path(path.parent).joinpath(temp_filename).resolve()
+    temp_filename = f"{analytics_file_path}.{str(uuid.uuid4())}"
+    temp_path = (
+        pathlib.Path(Path(file_paths[0]).parent).joinpath(temp_filename).resolve()
+    )
     result.to_parquet(temp_path)
 
-    os.rename(temp_path, save_path)
-    Path(path).unlink(missing_ok=True)
+    os.rename(temp_path, analytics_file_path)
+
+    for file_path in file_paths:
+        Path(file_path).unlink(missing_ok=True)
