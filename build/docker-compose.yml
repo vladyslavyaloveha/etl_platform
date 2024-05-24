@@ -291,7 +291,7 @@ services:
     depends_on:
       - spark-master
     ports:
-      - "8081:8081/tcp"
+      - "8081:8080/tcp"
       - "4041:4040/tcp"
     environment:
       <<: *spark-common
